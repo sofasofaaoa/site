@@ -36,5 +36,5 @@ from django.views import generic
 class BookListView(generic.ListView):
     model = Book
 
-    def get_queryset(self):
-        return Book.objects.filter(title__icontains='war')[:5]
+class BookDetailView(generic.DetailView):
+    model = Book
