@@ -18,6 +18,8 @@ def index(request):
 
     num_genres = Genre.objects.count()
     num_summer_books = Book.objects.filter(title__icontains='summer').count()
+    num_visits = request.session.get('num_visits', 0)
+    request.session['num_visits'] = num_visits + 1
 
     context = {
         'num_books': num_books,
@@ -26,6 +28,7 @@ def index(request):
         'num_authors': num_authors,
         'num_genres': num_genres,
         'num_summer_books': num_summer_books,
+        'num_visits': num_visits,
     }
 
     # Render the HTML template index.html with the data in the context variable
@@ -42,7 +45,7 @@ class BookDetailView(generic.DetailView):
 
 class AuthorListView(generic.ListView):
     model = Author
-    paginate_by = 10
+    paginate_by = 3
 
 class AuthorDetailView(generic.DetailView):
     model = Author

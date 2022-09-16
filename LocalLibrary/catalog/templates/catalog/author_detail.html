@@ -3,17 +3,15 @@
 {% block content %}
   <h1 style="margin-bottom: 30px">{{ author.first_name }} {{ author.last_name }} </h1>
 
-  <p><strong>Date of birth:</strong>{{ author.date_of_birth }}</p> <!-- author detail link not yet defined -->
-  {% if author.date_of_death %}
-  <p><strong>Date of death:</strong> {{ date_of_death }}</p>
+  <p>{{ author.date_of_birth }} - </p>{% if author.date_of_death %}<p>{{ date_of_death }}</p>
   {% endif %}
-  <div style="margin-left:0px;margin-top:40px;">
-    <hr>
-    <h4>Books</h4>
+  <div style="margin-left:0px;margin-top:35px;">
 
+    <h3>Books</h3>
     {% for book in author.book_set.all %}
     <hr>
-    <p style="font-size: 11pt"><strong>Title:</strong> {{book.title}}</p>
+    <p style="font-size: 11pt">{{book.title}}</p>
+    <p>{{book.summary}}</p>
     <p><strong>Language:</strong> {{book.language}}</p>
     {% endfor %}
   </div>
