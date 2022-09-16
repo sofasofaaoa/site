@@ -24,12 +24,29 @@
       <ul class="sidebar-nav" style="margin-top:30px;">
           <li style="margin-bottom: 10px; list-style-type: none;"><a href="{% url 'index' %}" style="text-decoration: none; font-size: 14pt; color: white;">Home</a></li>
           <li style="margin-bottom: 10px; list-style-type: none;"><a href="{% url 'books' %}" style="text-decoration: none; font-size: 14pt; color: white;">All books</a></li>
-          <li style="margin-bottom: 10px; list-style-type: none;"><a href="" style="text-decoration: none; font-size: 14pt; color: white;">All authors</a></li>
+          <li style="margin-bottom: 10px; list-style-type: none;"><a href="{% url 'authors' %}" style="text-decoration: none; font-size: 14pt; color: white;">All authors</a></li>
       </ul>
      {% endblock %}
       </div>
       <div class="col-sm-10 " style="padding-left: 60px;padding-top: 20px;">
       {% block content %}{% endblock %}
+          {% block pagination %}
+            {% if is_paginated %}
+              <div class="pagination">
+                  <span class="page-links">
+                      {% if page_obj.has_previous %}
+                          <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                      {% endif %}
+                      <span class="page-current">
+                          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                      </span>
+                      {% if page_obj.has_next %}
+                          <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                      {% endif %}
+                  </span>
+              </div>
+          {% endif %}
+        {% endblock %}
       </div>
     </div>
 
