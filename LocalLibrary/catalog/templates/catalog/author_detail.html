@@ -10,7 +10,7 @@
     <h3>Books</h3>
     {% for book in author.book_set.all %}
     <hr>
-    <p style="font-size: 11pt">{{book.title}}</p>
+    <p style="font-size: 11pt"><a href="{% url 'book-detail' book.pk %}">{{book}}</a> ({{ book.bookinstance_set.all.count}})</p>
     <p>{{book.summary}}</p>
     <p><strong>Language:</strong> {{book.language}}</p>
     {% endfor %}
