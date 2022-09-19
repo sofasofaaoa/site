@@ -1,13 +1,13 @@
 from django.urls import path, include
 from . import views
-from django.conf.urls import url
+from django.urls import path
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^books/$', views.BookListView.as_view(), name='books'),
-    url(r'^book/(?P<pk>\d+)$', views.BookDetailView.as_view(), name='book-detail'),
-    url(r'^authors/$', views.AuthorListView.as_view(), name='authors'),
-    url(r'^author/(?P<pk>\d+)$', views.AuthorDetailView.as_view(), name='author-detail'),
+    path('', views.index, name='index'),
+    path('books/', views.BookListView.as_view(), name='books'),
+    path('book/<slug:pk>', views.BookDetailView.as_view(), name='book-detail'),
+    path('authors/', views.AuthorListView.as_view(), name='authors'),
+    path('author/<slug:pk>', views.AuthorDetailView.as_view(), name='author-detail'),
 ] + [
-    url(r'^mybooks/$', views.LoanedBooksByUserListView.as_view(), name='my-borrowed'),
+    path('mybooks/', views.LoanedBooksByUserListView.as_view(), name='my-borrowed'),
 ]
