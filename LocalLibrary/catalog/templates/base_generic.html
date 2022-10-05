@@ -32,6 +32,15 @@
            {% else %}
           <li style="margin-bottom: 10px; list-style-type: none;"><a href="{% url 'login'%}?next={{request.path}}" style="text-decoration: none; font-size: 14pt; color: white;">Login</a></li>
            {% endif %}
+          {% if user.is_staff %}
+
+
+          <li style="margin-bottom: 10px; margin-top: 50px; list-style-type: none; text-decoration: none; font-size: 14pt; color: white;">Staff</li>
+          {% if perms.catalog.can_mark_returned %}
+          <li style="margin-bottom: 10px; list-style-type: none;"><a href="{% url 'all-borrowed' %}" style="text-decoration: none; font-size: 14pt; color: white;">All borrowed</a></li>
+          {% endif %}
+
+          {% endif %}
       </ul>
      {% endblock %}
       </div>
